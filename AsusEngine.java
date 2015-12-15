@@ -107,17 +107,17 @@ public final class AsusEngine {
 
 	public static void main(String... args) {
 		try{
-			runJob(args[0], args[1]);
+			runJob(args[0], args[1], args[2]);
 		}catch(Exception e){
 			log.error("Error MAIN", e);
 		}
 	}
 
-	public static void runJob(String input, String output) throws Exception {
+	public static void runJob(String input, String output, String xmlTag) throws Exception {
 		Configuration conf = new Configuration();
 		conf.set("key.value.separator.in.input.line", " ");
-		conf.set("xmlinput.start", "article");
-		conf.set("xmlinput.end", "/article");
+		conf.set("xmlinput.start", xmlTag);
+		conf.set("xmlinput.end", "/" + xmlTag);
 
 		Job job = new Job(conf);
 		job.setJarByClass(AsusEngine.class);
