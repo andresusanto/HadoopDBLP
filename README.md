@@ -24,22 +24,39 @@ To run this project, issue the following command:
 ```bash
 hadoop jar <jar file> AsusEngine <input file in hdfs> <output file in hdfs> <xml Document Tag>
 
-# example
+# single search example
 hadoop jar bin/dblpc.jar AsusEngine /dblp/dblp.xml /user/triplex/dblp phdthesis
+
+# multiple search example (article , books, and inproceedings at the same time) is separated by using ,
+hadoop jar bin/dblpc.jar AsusEngine /dblp/dblp.xml /user/triplex/dblp article,inproceedings,book
 ```
 ## Execution Result
 ![Execution Result](/../screenshoot/screenshoot/ss.PNG?raw=true "Result")
 
+**Executed Command:**
+
+```
+hadoop jar bin/dblpc.jar AsusEngine /dblp/dblp.xml /user/triplex/dblp article,inproceedings
+```
+
 **Output:**
 
 ```
-_DOCUMENT_	6961
-Kai Richter	3
-Andreas Meier	3
-Holger Schmidt	3
-Alexander Ziegler	2
-Andreas Sch auml fer	2
-
+_inproceedings_	1714171
+_article_	1375638
+H. Vincent Poor	1165
+Wei Wang	1124
+Yan Zhang	1050
+Wei Liu	1033
+Wen Gao	932
+Philip S. Yu	893
+Thomas S. Huang	841
+Wei Zhang	831
+Lei Wang	829
+Yang Yang	826
+Lajos Hanzo	820
+Jing Li	807
+Chin-Chen Chang	805
 ```
 
-**Note:** `_DOCUMENT_` is the number of document in the file (in this example is the numbers of phdthesis)
+**Note:** `_{DOCUMENT}_` is the number of document type in the file (in this example is the numbers of inproceedings and article)
