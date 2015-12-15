@@ -22,8 +22,8 @@ After issuing previous command, you will find a jar file (dblpc.jar) in `bin` fo
 ## Running
 To run this project, issue the following command:
 ```bash
-hadoop jar <jar file> AsusEngine <input file in hdfs> <output file in hdfs>
+hadoop jar <jar file> AsusEngine <input file in hdfs> <output file in hdfs> <xml Document Tag>
 
 # example
-hadoop jar bin/dblpc.jar AsusEngine /dblp/dblp.xml /user/triplex/dblp
+hadoop jar bin/dblpc.jar AsusEngine /dblp/dblp.xml /user/triplex/dblp phdthesis
 ```
