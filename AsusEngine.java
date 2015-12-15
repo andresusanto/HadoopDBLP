@@ -73,7 +73,7 @@ public final class AsusEngine {
 			// cari kvalue terkecil di countMap
 			Text minKey = null; int minVal = 0;
 			for (Text key1 : countMap.keySet()) {
-				if (minVal > countMap.get(key1).get()){
+				if (minKey == null || countMap.get(key1).get() < minVal){
 					minVal = countMap.get(key1).get();
 					minKey = key1;
 				}
