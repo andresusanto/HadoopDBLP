@@ -27,3 +27,19 @@ hadoop jar <jar file> AsusEngine <input file in hdfs> <output file in hdfs> <xml
 # example
 hadoop jar bin/dblpc.jar AsusEngine /dblp/dblp.xml /user/triplex/dblp phdthesis
 ```
+## Execution Result
+![Execution Result](/../screenshoot/screenshoot/ss.PNG?raw=true "Result")
+
+**Output:**
+
+```
+_DOCUMENT_	6961
+Kai Richter	3
+Andreas Meier	3
+Holger Schmidt	3
+Alexander Ziegler	2
+Andreas Sch auml fer	2
+
+```
+
+**Note:** `_DOCUMENT_` is the number of document in the file (in this example is the numbers of phdthesis)
