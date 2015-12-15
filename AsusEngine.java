@@ -32,6 +32,7 @@ public final class AsusEngine {
 			try {
 				XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(new ByteArrayInputStream(document.getBytes()));
 				String currentElement = "";
+				String rootElement = "";
 				while (reader.hasNext()) {
 					int code = reader.next();
 					switch (code) {
@@ -45,12 +46,16 @@ public final class AsusEngine {
 									author.set(auth);
 									context.write(author, one);
 								}
+							}else{
+								if (rootElement.equals("")){
+									rootElement = currentElement;
+								}
 							}
 						break;
 					}
 				}
 				reader.close();
-				author.set("_DOCUMENT_"); // count dokumen
+				author.set("_"+rootElement+"_"); // count dokumen
 				context.write(author, one);
 			} catch (Exception e) {
 				log.error("Error processing '" + document + "'", e);
@@ -70,6 +75,7 @@ public final class AsusEngine {
                 sum += val.get(); 
             }
 			
+			
 			// cari kvalue terkecil di countMap
 			Text minKey = null; int minVal = 0;
 			for (Text key1 : countMap.keySet()) {
@@ -81,8 +87,8 @@ public final class AsusEngine {
 			
 			// kalo misalnya jumlah artikel yg d tulis penulis ini > artikel minimal di countMap
 			if (sum > minVal){
-				if (minKey != null && countMap.size() > 6){
-					countMap.remove(minKey); // hapus kalo misalnya countmap masih belom penuh (disini kapasitas = 7) sehingga data yg d proses di clean up = N * 6
+				if (minKey != null && countMap.size() > 15){
+					countMap.remove(minKey); // hapus kalo misalnya countmap masih belom penuh (disini kapasitas = 15) sehingga data yg d proses di clean up = N * 15
 				}
 				countMap.put(new Text(key), new IntWritable(sum));
 			}
@@ -95,7 +101,7 @@ public final class AsusEngine {
 
             int counter = 0;
             for (Text key : sortedMap.keySet()) {
-                if (counter++ == 6) {
+                if (counter++ == 15) {
                     break;
                 }
 				
@@ -117,7 +123,7 @@ public final class AsusEngine {
 		Configuration conf = new Configuration();
 		conf.set("key.value.separator.in.input.line", " ");
 		conf.set("xmlinput.start", xmlTag);
-		conf.set("xmlinput.end", "/" + xmlTag);
+	conf.set("xmlinput.end", "/" + xmlTag.replaceAll("\\|", "\\|\\/")); // support untuk multiple tag dengan delim |
 
 		Job job = new Job(conf);
 		job.setJarByClass(AsusEngine.class);
