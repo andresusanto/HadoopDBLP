@@ -123,7 +123,7 @@ public final class AsusEngine {
 		Configuration conf = new Configuration();
 		conf.set("key.value.separator.in.input.line", " ");
 		conf.set("xmlinput.start", xmlTag);
-	conf.set("xmlinput.end", "/" + xmlTag.replaceAll("\\|", "\\|\\/")); // support untuk multiple tag dengan delim |
+		conf.set("xmlinput.end", "/" + xmlTag.replaceAll(",", ",/")); // support untuk multiple tag dengan delim ,
 
 		Job job = new Job(conf);
 		job.setJarByClass(AsusEngine.class);

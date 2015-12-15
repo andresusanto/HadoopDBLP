@@ -101,7 +101,7 @@ public class XmlInputFormat extends TextInputFormat {
     private boolean readUntilMatch(byte[] match, boolean withinBlock) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		String allMatchs = new String(match, StandardCharsets.UTF_8);
-		List matches = Arrays.asList(allMatchs.split("\\|"));
+		List matches = Arrays.asList(allMatchs.split(","));
 		
 		
 		int state = 0;
