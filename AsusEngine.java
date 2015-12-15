@@ -73,7 +73,7 @@ public final class AsusEngine {
 			// cari kvalue terkecil di countMap
 			Text minKey = null; int minVal = 0;
 			for (Text key1 : countMap.keySet()) {
-				if (minVal < countMap.get(key1).get()){
+				if (minVal > countMap.get(key1).get()){
 					minVal = countMap.get(key1).get();
 					minKey = key1;
 				}
@@ -82,7 +82,7 @@ public final class AsusEngine {
 			// kalo misalnya jumlah artikel yg d tulis penulis ini > artikel minimal di countMap
 			if (sum > minVal){
 				if (minKey != null && countMap.size() > 6){
-					countMap.remove(minKey); // hapus kalo misalnya countmap masih belom penuh (disini kapasitas = 7)
+					countMap.remove(minKey); // hapus kalo misalnya countmap masih belom penuh (disini kapasitas = 7) sehingga data yg d proses di clean up = N * 6
 				}
 				countMap.put(new Text(key), new IntWritable(sum));
 			}
